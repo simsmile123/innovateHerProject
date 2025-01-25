@@ -20,13 +20,15 @@ const scrapeAbortionData = async () => {
 
     const data = await page.evaluate(() => {
       // Example logic; replace with actual selectors
-      const rows = Array.from(document.querySelectorAll(".table-class tr"));
+      const rows = Array.from(document.querySelectorAll(".slp-table tr"));
       return rows.map((row) => {
         const columns = row.querySelectorAll("td");
         return {
           state: columns[0]?.innerText.trim(),
-          status: columns[1]?.innerText.trim(),
-          exceptions: columns[2]?.innerText.trim(),
+          total: columns[1]?.innerText.trim(),
+          first18: columns[2]?.innerText.trim(),
+          after18: columns[3]?.innerText.trim(),
+          noBan: columns[4]?.innerText.trim(),
         };
       });
     });
